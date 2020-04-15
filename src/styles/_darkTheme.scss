@@ -1,0 +1,29 @@
+@media (prefers-color-scheme: dark) { 
+    $accent-color: #9e99ff;
+    $input-color: rgb(54, 59, 105);
+
+    html{
+        background-color:rgb(29, 33, 57);
+        color: white;
+    }
+
+    .clock-figure{
+        content: url('./assets/undraw_time_management_dark.svg')
+    }
+
+    .textfield{
+        color: white;
+        background-color: transparent;
+        outline-color: $accent-color;
+        border: 2px solid $input-color;
+        border-radius: 5px;
+    }
+
+    .button{
+        background-color: $accent-color;
+    }
+
+    .main-title{
+        color: $accent-color;
+    }
+};

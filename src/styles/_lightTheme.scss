@@ -1,0 +1,12 @@
+@media (prefers-color-scheme: light) {
+    $accent-color: #6C63FF;
+
+    .clock-figure{
+        content: url('./assets/undraw_time_management.svg')
+    }
+
+    .main-title{
+        color: $accent-color;
+    }    
+
+};

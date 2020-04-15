@@ -1,0 +1,17 @@
+.wide{
+    height: 100vh;
+}
+
+.container-h{
+    display: flex;
+    align-items: center;
+    padding: 5%;
+}
+
+.stack{
+    display: flex;
+    flex-direction: column;
+    padding: 1%;
+    align-items: center;
+    margin: 0;
+}

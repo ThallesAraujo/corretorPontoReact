@@ -1,0 +1,20 @@
+@import 'lightTheme';
+@import 'darkTheme';
+@import 'layout';
+@import 'components';
+
+*{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}
+
+.main-title{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+    font-size: 2.5rem;
+}
+
+.clock-figure{
+    width: 60%;
+    height: 60%;
+}

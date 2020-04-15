@@ -1,0 +1,95 @@
+@media (prefers-color-scheme: light) {
+  .clock-figure {
+    content: url("./assets/undraw_time_management.svg");
+  }
+  .main-title {
+    color: #6C63FF;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background-color: #1d2139;
+    color: white;
+  }
+  .clock-figure {
+    content: url("./assets/undraw_time_management_dark.svg");
+  }
+  .textfield {
+    color: white;
+    background-color: transparent;
+    outline-color: #9e99ff;
+    border: 2px solid #363b69;
+    border-radius: 5px;
+  }
+  .button {
+    background-color: #9e99ff;
+  }
+  .main-title {
+    color: #9e99ff;
+  }
+}
+
+.wide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  vertical-align: middle;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.stack-complete {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  vertical-align: middle;
+}
+
+.textfield {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 14px;
+}
+
+.button {
+  padding: 12px 20px;
+  margin: 8px 0;
+  cursor: pointer;
+  border: 0px transparent;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 1000;
+  text-shadow: none;
+}
+
+* {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+}
+
+.main-title {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  font-size: 2.5rem;
+}
+
+.clock-figure {
+  width: 60%;
+  height: 60%;
+}
+/*# sourceMappingURL=main.css.map */
