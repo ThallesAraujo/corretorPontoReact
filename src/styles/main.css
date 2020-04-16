@@ -2,6 +2,16 @@
   .clock-figure {
     content: url("./assets/undraw_time_management.svg");
   }
+  .textfield {
+    background-color: transparent;
+    outline-color: #6C63FF;
+    border: 2px solid #d1cffa;
+    border-radius: 5px;
+  }
+  .button {
+    background-color: #6C63FF;
+    color: white;
+  }
   .main-title {
     color: #6C63FF;
   }
