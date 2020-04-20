@@ -8,6 +8,22 @@
     font-weight: 500;
 }
 
+.tabs{
+    display: flex;
+
+    .tab{
+        cursor: pointer;
+        margin: 0.5em;
+        margin-right: 20px;
+        padding: 0 0.5em 0 0.5em;
+
+        &-active{
+            border-radius: 10px;
+        }
+    }
+
+}
+
 .main-title{
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;

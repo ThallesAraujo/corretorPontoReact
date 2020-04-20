@@ -1,12 +1,14 @@
 //mais detalhes -> https://www.basefactor.com/global-state-with-react
-import Usuario from '../models'
 import Ponto from '../models'
 import React, { createContext, useContext, useReducer } from 'react'
 
 const defaultGlobalState = {
-    usuario: Usuario,
-    saveSessionData: false,
-    pontos: [Ponto]
+    matricula: "",
+    senha : "",
+    pontos: [Ponto],
+    showSpinner: false,
+    pontosFilter: [Ponto],
+    startedEdition: false
 }
 
 const globalStateContext = createContext(defaultGlobalState)

@@ -1,0 +1,28 @@
+.spinner-container{
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(10px);
+    background-color: rgba(#9e99ff, 0.5);
+    position: absolute;
+    z-index: 9;
+
+    p{
+        position: absolute;
+        z-index: 10;
+        top: 35%;
+        left: 45vw;
+    }
+
+    .spinner{
+        position: absolute;
+        z-index: 10;
+        top: 40%;
+        left: 45vw;
+    }
+
+}
+
+.hidden{
+    display: none;
+}

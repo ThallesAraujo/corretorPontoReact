@@ -6,6 +6,10 @@
         content: url('./assets/undraw_time_management.svg')
     }
 
+    .card-inconsistencia{
+        background-color: darken($color: $input-color, $amount: 0.5);
+    }
+
     .textfield{
         background-color: transparent;
         outline-color: $accent-color;

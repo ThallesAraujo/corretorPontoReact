@@ -1,0 +1,89 @@
+.textfield {
+  margin: 0.2em;
+}
+
+.card {
+  border-color: transparent;
+  border-radius: 5px;
+  padding: 1em;
+  margin: 1em;
+}
+
+.card .date-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.card .ponto-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card .button {
+  margin: 1em 1em 0 0;
+}
+
+.item {
+  padding-right: 10px;
+}
+
+.favorited {
+  color: #9e99ff;
+  background-color: #9e99ff;
+}
+
+.favorited i {
+  color: #9e99ff;
+}
+
+.details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.details .indicator {
+  font-size: 16px;
+  padding: 1em;
+}
+
+.details .indicator i {
+  font-size: 2em;
+}
+
+.details button {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  max-width: 80px;
+}
+
+.details button i {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.details button:hover {
+  color: white;
+  border-color: white;
+}
+
+.details button:hover i {
+  color: white;
+}
+
+.title-link:hover {
+  color: white;
+}
+/*# sourceMappingURL=card.css.map */

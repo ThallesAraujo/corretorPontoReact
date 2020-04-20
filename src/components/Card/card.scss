@@ -1,0 +1,77 @@
+$color-lighten: lighten($color: #9e99ff, $amount: 25.0);
+
+.textfield{
+    margin: 0.2em
+}
+
+.card{
+
+    border-color: transparent;
+    border-radius: 5px;
+    padding: 1em;
+    margin: 1em;
+
+    .date-container{
+        display: flex;
+        align-items: center;
+    }
+
+    .ponto-container{
+        display: flex;
+    }
+
+    .button{
+        margin: 1em 1em 0 0;
+    }
+    
+}
+
+.item{
+    padding-right: 10px;
+}
+
+
+.favorited{
+    color: #9e99ff;
+    background-color: #9e99ff;
+    i{
+        color: #9e99ff;
+    }
+}
+
+.details{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .indicator{
+        font-size: 16px;
+        padding: 1em;
+        i{
+            font-size: 2em;
+        }
+    }
+
+    button{
+        transition: all 0.5s;
+        max-width: 80px;
+
+        i{
+            transition: all 0.5s;
+        }
+
+        &:hover{
+            color: $color-lighten;
+            border-color: $color-lighten;
+            i{
+                color: $color-lighten
+            }
+        }
+    }
+
+    
+}
+
+.title-link:hover{
+    color: $color-lighten
+}
