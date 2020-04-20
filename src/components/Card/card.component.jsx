@@ -27,8 +27,6 @@ const Card = (params) => {
 
     const getFormattedTime = (dateToFormat) => {
 
-        console.log("dateToFormat", dateToFormat)
-
         if(dateToFormat !== null && dateToFormat !== undefined && dateToFormat.length > 5){
             let date = new Date(dateToFormat)
             return `${appendZero(date.getHours())}:${appendZero(date.getMinutes())}`
@@ -37,12 +35,40 @@ const Card = (params) => {
         }
     }
 
+    const marcarLinhaCompleta = (ponto) =>{
+        for (var i = 1; i < 5; i++){
+            if (ponto["camposEditados"] !== null && ponto["camposEditados"] !== undefined){
+                ponto["camposEditados"] = [...ponto["camposEditados"],`entrada${i}`,`saida${i}`]
+            }else{
+                ponto["camposEditados"] = [`entrada${i}`,`saida${i}`]
+            }
+        }
+    }
+
+    const marcarDebito = () => {
+        let old = ponto
+        marcarLinhaCompleta(ponto)
+        ponto["justificativa"] = "Débito Banco Horas"
+        ponto["camposEditados"] =[...ponto["camposEditados"], "justificativa"]
+        ponto["isEditado"] = true
+        params.updatePonto(old, ponto)
+    }
+
     const handleEdit = (event) => {
         dispatch({startedEdition: true})
-        console.log("Tamanho",event.target.value.length)
+
         let old = ponto
         ponto[event.target.id] = event.target.value
+        ponto["isEditado"] = true
+        if (ponto["camposEditados"] !== null && ponto["camposEditados"] !== undefined){
+            ponto["camposEditados"] = [...ponto["camposEditados"], event.target.id]
+        }else{
+            ponto["camposEditados"] = [event.target.id]
+        }
         if(event.target.value.length === 5){
+            if(event.target.id === "justificativa"){
+                marcarLinhaCompleta(ponto)
+            }
             params.updatePonto(old, ponto)
         }
     }
@@ -54,6 +80,7 @@ const Card = (params) => {
             return `${num}`
         }
     }
+
 
     return (
         <div className={PontoService.isInconsistencia(ponto) ? "card card-inconsistencia" : "card"}>
@@ -73,8 +100,8 @@ const Card = (params) => {
             </div>
             <div>
                 <p>Falta</p>
-                <input type="text" className="textfield" name="justificativa" id="justificativa" placeholder="Digite uma justificativa de falta" onChange={handleEdit}/>
-                <input type="button" className="button" value="Marcar como débito no banco de horas"  onClick={ () => {} }/>
+                <input type="text" className="textfield" name="justificativa" id="justificativa" value={ponto["justificativa"] !== null && ponto["justificativa"] !== undefined ? ponto["justificativa"]: ""} placeholder="Digite uma justificativa de falta" onChange={handleEdit}/>
+                <input type="button" className="button" value="Marcar como débito no banco de horas" onClick={marcarDebito}/>
             </div>
         </div>
     )

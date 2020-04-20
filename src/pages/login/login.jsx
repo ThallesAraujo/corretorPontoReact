@@ -13,8 +13,7 @@ const Login = () => {
   }
 
   const login = () => {
-
-    console.log("Dados:", state.matricula, state.senha, state.saveSessionData)
+    
     dispatch({showSpinner: true})
     PontoService.getPontos(state.matricula, state.senha, (pontos) => {
       dispatch({ pontos })

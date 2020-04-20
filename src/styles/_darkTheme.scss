@@ -60,4 +60,20 @@
     .main-title{
         color: $accent-color;
     }
+
+    th{
+        padding: 1em;
+    }
+
+
+    .ponto{
+        border: 2px solid $input-color;
+
+        &-modificado{
+            background-color: transparentize($color: $danger-color, $amount: 0.5);
+            border: 2px solid $danger-color;
+            color: white;
+        }
+    }
+
 };

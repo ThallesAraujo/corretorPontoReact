@@ -26,7 +26,6 @@ const Main = () => {
 
         if (event.target.id === "inconsistencias"){
             pontos = pontos.filter((ponto) => PontoService.isInconsistencia(ponto));
-            console.log(pontos)
         }else{
             pontos = state.pontos
         }
@@ -41,7 +40,6 @@ const Main = () => {
         const indice = pontos.indexOf(antigo)
         pontos[indice] = novo
         dispatch({ pontosFilter: pontos })
-        console.table(pontos)
     }
 
 

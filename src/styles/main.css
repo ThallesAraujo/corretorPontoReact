@@ -65,6 +65,17 @@
   .main-title {
     color: #9e99ff;
   }
+  th {
+    padding: 1em;
+  }
+  .ponto {
+    border: 2px solid #363b69;
+  }
+  .ponto-modificado {
+    background-color: rgba(245, 113, 103, 0.5);
+    border: 2px solid #f57167;
+    color: white;
+  }
 }
 
 .wide {

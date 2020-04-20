@@ -10,16 +10,17 @@ const SheetViewer = () => {
     const pontosModificados = state.pontosFilter
 
     const isModificado = (campo, ponto) => {
-        const indice = pontosModificados.indexOf(ponto)
-        if(indice < 0){
-            return true
-        }else if(pontosOriginais[indice][campo] !== ponto[campo]){
-            return true
-        }else{
-            return false
-        }
-
+       if (ponto["camposEditados"]){
+           if(ponto["camposEditados"].includes(campo)){
+                return true
+           }else{
+               return false
+           }
+       }else{
+           return false
+       }
     }
+
 
     const diasDaSemana = {
         0: "Dom",
@@ -46,8 +47,6 @@ const SheetViewer = () => {
 
     const getFormattedTime = (dateToFormat) => {
 
-        console.log("dateToFormat", dateToFormat)
-
         if(dateToFormat !== null && dateToFormat !== undefined && dateToFormat.length > 5){
             let date = new Date(dateToFormat)
             return `${appendZero(date.getHours())}:${appendZero(date.getMinutes())}`
@@ -57,7 +56,6 @@ const SheetViewer = () => {
     }
 
     const toggleViewer = () => {
-        console.log("chamou")
         const viewer = document.getElementsByClassName('planview-container')[0]
         viewer.classList.toggle('planview-hidden')    
         viewer.classList.toggle('planview-show')
@@ -67,10 +65,26 @@ const SheetViewer = () => {
         <div className="planview">
             <input type="button" className="button" value="Pré-visualizar planilha" onClick={toggleViewer}/>
             <div className="planview-hidden planview-container">
-                    <i class="gg-close" onClick={toggleViewer}></i>
-                    {pontosOriginais.map((ponto) =>{
+                    <div className="planview-actionbar">
+                        <i class="gg-close action-button" onClick={toggleViewer}></i>
+                    </div>
+                    <div className="pontos-container">
+                    <tr>
+                        <th>Data</th>
+                        <th>Entrada 1</th>
+                        <th>Saída 1</th>
+                        <th>Entrada 2</th>
+                        <th>Saída 2</th>
+                        <th>Entrada 3</th>
+                        <th>Saída 3</th>
+                        <th>Entrada 4</th>
+                        <th>Saída 4</th>
+                        <th>Justificativa</th>
+                    </tr>
+                    {pontosModificados.map((ponto) =>{
                         return (
                             <tr>
+                                <td className={ponto["isEditado"] ? "ponto-modificado": "ponto"}>{getFomattedDate(ponto.data)}</td>
                                 <td className={isModificado("entrada1", ponto) ? "ponto-modificado": "ponto"}>{getFormattedTime(ponto.entrada1)}</td>
                                 <td className={isModificado("saida1", ponto) ? "ponto-modificado": "ponto"}>{getFormattedTime(ponto.saida1)}</td>
                                 <td className={isModificado("entrada2", ponto) ? "ponto-modificado": "ponto"}>{getFormattedTime(ponto.entrada2)}</td>
@@ -79,9 +93,11 @@ const SheetViewer = () => {
                                 <td className={isModificado("saida3", ponto) ? "ponto-modificado": "ponto"}>{getFormattedTime(ponto.saida3)}</td>
                                 <td className={isModificado("entrada4", ponto) ? "ponto-modificado": "ponto"}>{getFormattedTime(ponto.entrada4)}</td>
                                 <td className={isModificado("saida4", ponto) ? "ponto-modificado": "ponto"}>{getFormattedTime(ponto.saida4)}</td>
+                                <td className={isModificado("justificativa", ponto) ? "ponto-modificado": "ponto"}>{ponto["justificativa"] !== null && ponto["justificativa"] !== undefined ? ponto["justificativa"]: ""}</td>
                             </tr>
                         )
                     })}
+                    </div>
                 
             </div>
         </div>

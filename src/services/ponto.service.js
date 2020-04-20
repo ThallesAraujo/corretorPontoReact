@@ -18,7 +18,7 @@ class PontoService {
             "ano": date.getFullYear().toString(10),
             "mes": date.getMonth().toString(10)
          }).then(response => {
-             console.log("pontos", response)
+             console.table(response)
              completion(response.data)
 
          })
