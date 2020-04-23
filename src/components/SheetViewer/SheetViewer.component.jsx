@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useGlobal } from '../../states/global'
 import './sheetview.css'
+import ReactToPrint from 'react-to-print';
 
 const SheetViewer = () => {
 
     const [state] = useGlobal()
+
+    const tableRef = useRef();
 
     const pontosOriginais = state.pontos
     const pontosModificados = state.pontosFilter
@@ -61,6 +64,7 @@ const SheetViewer = () => {
         viewer.classList.toggle('planview-show')
     }
 
+
     return(
         <div className="planview">
             <input type="button" className="button" value="Pré-visualizar planilha" onClick={toggleViewer}/>
@@ -68,7 +72,7 @@ const SheetViewer = () => {
                     <div className="planview-actionbar">
                         <i class="gg-close action-button" onClick={toggleViewer}></i>
                     </div>
-                    <div className="pontos-container">
+                    <table className="pontos-container" ref={tableRef}>
                     <tr>
                         <th>Data</th>
                         <th>Entrada 1</th>
@@ -97,11 +101,16 @@ const SheetViewer = () => {
                             </tr>
                         )
                     })}
-                    </div>
+                    </table>
+                    <ReactToPrint
+                            trigger={() => <i class="gg-software-download action-button"></i>}
+                            content={() => tableRef.current}
+                        />
                 
             </div>
         </div>
     )
+
 
 
 

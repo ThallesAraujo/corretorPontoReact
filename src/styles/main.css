@@ -65,6 +65,9 @@
   .main-title {
     color: #9e99ff;
   }
+  table {
+    background-color: #363b69;
+  }
   th {
     padding: 1em;
   }
