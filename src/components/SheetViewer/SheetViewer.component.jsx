@@ -64,14 +64,27 @@ const SheetViewer = () => {
         viewer.classList.toggle('planview-show')
     }
 
+    const btnExportar = () => {
+        return(
+            <div className="btn-exportar-container">
+                <button className="button action-button" title="Exportar para PDF">
+                    <i className="gg-software-download"></i>
+                </button>
+            </div>
+        )
+    }
+
 
     return(
         <div className="planview">
-            <input type="button" className="button" value="Pré-visualizar planilha" onClick={toggleViewer}/>
+            <button className="button action-button" onClick={toggleViewer} title="Pré-visualizar">
+                <i className="gg-eye"></i>
+            </button>
             <div className="planview-hidden planview-container">
                     <div className="planview-actionbar">
                         <i class="gg-close action-button" onClick={toggleViewer}></i>
                     </div>
+                    <div className="table-container" >
                     <table className="pontos-container" ref={tableRef}>
                     <tr>
                         <th>Data</th>
@@ -85,7 +98,7 @@ const SheetViewer = () => {
                         <th>Saída 4</th>
                         <th>Justificativa</th>
                     </tr>
-                    {pontosModificados.map((ponto) =>{
+                    {pontosOriginais.map((ponto) =>{
                         return (
                             <tr>
                                 <td className={ponto["isEditado"] ? "ponto-modificado": "ponto"}>{getFomattedDate(ponto.data)}</td>
@@ -102,8 +115,9 @@ const SheetViewer = () => {
                         )
                     })}
                     </table>
+                    </div>
                     <ReactToPrint
-                            trigger={() => <i class="gg-software-download action-button"></i>}
+                            trigger={btnExportar}
                             content={() => tableRef.current}
                         />
                 

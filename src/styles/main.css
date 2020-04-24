@@ -2,13 +2,38 @@
   .clock-figure {
     content: url("./assets/undraw_time_management.svg");
   }
+  .spinner-container {
+    background-color: rgba(108, 99, 255, 0.5);
+  }
+  .planview-container {
+    background-color: #f1f3f6;
+  }
+  .card {
+    background-color: #f1f3f6;
+  }
   .card-inconsistencia {
-    background-color: #cfcdfa;
+    background-color: rgba(255, 113, 103, 0.4);
+    color: #ff4134;
+  }
+  .card-inconsistencia .textfield {
+    outline-color: #ff382a;
+    border-color: rgba(255, 113, 103, 0.8);
+  }
+  .tabs {
+    background-color: #f1f3f6;
+    border-radius: 10px;
+  }
+  .tabs .tab-active {
+    color: white;
+    background-color: #544aff;
+  }
+  .ponto-inconsistente {
+    color: #6C63FF;
   }
   .textfield {
     background-color: transparent;
     outline-color: #6C63FF;
-    border: 2px solid #d1cffa;
+    border: 2px solid rgba(108, 99, 255, 0.5);
     border-radius: 5px;
   }
   .button {
@@ -17,6 +42,28 @@
   }
   .main-title {
     color: #6C63FF;
+  }
+  .pontos-container {
+    background-color: #f1f3f6;
+  }
+  .pontos-container th {
+    color: #5b6f8d;
+  }
+  .pontos-container table {
+    background-color: rgba(60, 48, 255, 0.5);
+  }
+  .ponto {
+    border: 2px solid #dbe0e8;
+    color: #5b6f8d;
+  }
+  .ponto-modificado {
+    background-color: #ffa19a;
+    border: 2px solid #ff6358;
+    color: #cd0d00;
+  }
+  .message-error {
+    background-color: rgba(255, 113, 103, 0.4);
+    color: #ff6f64;
   }
 }
 
@@ -27,6 +74,9 @@
   }
   .planview-container {
     background-color: #252847;
+  }
+  .spinner-container {
+    background-color: rgba(54, 59, 105, 0.5);
   }
   .card {
     background-color: #252847;
@@ -45,6 +95,7 @@
   }
   .tabs .tab-active {
     background-color: #8680ff;
+    color: black;
   }
   .clock-figure {
     content: url("./assets/undraw_time_management_dark.svg");
@@ -65,11 +116,11 @@
   .main-title {
     color: #9e99ff;
   }
-  table {
-    background-color: #363b69;
+  .pontos-container {
+    background-color: #252847;
   }
-  th {
-    padding: 1em;
+  .pontos-container table {
+    background-color: #252847;
   }
   .ponto {
     border: 2px solid #363b69;
@@ -78,6 +129,10 @@
     background-color: rgba(245, 113, 103, 0.5);
     border: 2px solid #f57167;
     color: white;
+  }
+  .message-error {
+    background-color: rgba(245, 113, 103, 0.4);
+    color: #f56f65;
   }
 }
 
@@ -133,6 +188,10 @@
   font-weight: 500;
 }
 
+@page {
+  margin: 0.3cm;
+}
+
 .tabs {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -159,5 +218,40 @@
 .clock-figure {
   width: 60%;
   height: 60%;
+}
+
+.message {
+  padding-left: 10px;
+}
+
+.message-success {
+  background-color: #bcdc1c;
+  color: #414c0b;
+}
+
+.message {
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+  height: 0;
+  padding-top: 15px;
+}
+
+#message {
+  transition-timing-function: ease;
+  -webkit-transition-timing-function: ease;
+}
+
+.message.in {
+  height: 40px;
+}
+
+.message.out {
+  top: -1000px;
+  height: 0;
+}
+
+.message.remove-pad {
+  padding-top: 0px;
+  color: transparent;
 }
 /*# sourceMappingURL=main.css.map */

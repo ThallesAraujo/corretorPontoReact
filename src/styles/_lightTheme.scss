@@ -1,13 +1,50 @@
 @media (prefers-color-scheme: light) {
     $accent-color: #6C63FF;
-    $input-color: rgb(209, 207, 250);
+    $input-color: transparentize($accent-color, 0.5);
+    $background-color: #f1f3f6;
+    $danger-color: #ff7167;
 
     .clock-figure{
         content: url('./assets/undraw_time_management.svg')
     }
 
+    .spinner-container{
+        background-color: rgba($input-color, 0.5);
+    }
+
+    .planview-container{
+        background-color: $background-color
+    }
+
+
+    .card{
+        background-color: $background-color
+    }
+
     .card-inconsistencia{
-        background-color: darken($color: $input-color, $amount: 0.5);
+        background-color: transparentize($color: $danger-color, $amount: 0.6);
+        color: darken($color: $danger-color, $amount: 10);
+
+        .textfield{
+            outline-color: darken($color: $danger-color, $amount: 12);
+            border-color: transparentize($color: $danger-color, $amount: 0.2);
+        }
+    }
+
+    .tabs{
+
+        background-color: $background-color;
+        border-radius: 10px;
+
+        .tab-active{
+            color: white;
+            background-color: darken($color: $accent-color, $amount: 5);
+        }
+
+    }
+
+    .ponto-inconsistente{
+        color: $accent-color
     }
 
     .textfield{
@@ -25,5 +62,32 @@
     .main-title{
         color: $accent-color;
     }
+
+    .pontos-container{
+        background-color: $background-color;
+
+        th{
+            color: darken($color: $background-color, $amount: 50);
+        }
+
+        table{
+            background-color: darken($color: $input-color, $amount: 10);
+        }
+    }
+
+    .ponto{
+        border: 2px solid darken($color: $background-color, $amount: 7);
+        color: darken($color: $background-color, $amount: 50);
+        &-modificado{
+            background-color: lighten($color: $danger-color, $amount: 10);
+            border: 2px solid darken($color: $danger-color, $amount: 3);
+            color: darken($color: $danger-color, $amount: 30);
+        }
+    }
+
+    .message-error{
+        background-color: transparentize($color: $danger-color, $amount: 0.6);
+        color: darken($color: $danger-color, $amount: 0.5);
+      }
 
 };

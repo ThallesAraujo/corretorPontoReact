@@ -1,6 +1,7 @@
 @media (prefers-color-scheme: dark) { 
     $accent-color: #9e99ff;
     $input-color: rgb(54, 59, 105);
+    $background-color: #1d2139;
     $danger-color: #f57167;
 
     html{
@@ -10,6 +11,10 @@
 
     .planview-container{
         background-color: darken($color: $input-color, $amount: 10);
+    }
+
+    .spinner-container{
+        background-color: rgba($input-color, 0.5);
     }
 
     .card{
@@ -33,6 +38,7 @@
 
         .tab-active{
             background-color: darken($color: $accent-color, $amount: 5);
+            color: black;
         }
 
     }
@@ -61,14 +67,13 @@
         color: $accent-color;
     }
 
-    table{
-        background-color: $input-color;
-    }
+    .pontos-container{
+        background-color: darken($color: $input-color, $amount: 10);
 
-    th{
-        padding: 1em;
+        table{
+            background-color: darken($color: $input-color, $amount: 10);
+        }
     }
-
 
     .ponto{
         border: 2px solid $input-color;
@@ -79,5 +84,10 @@
             color: white;
         }
     }
+
+    .message-error{
+        background-color: transparentize($color: $danger-color, $amount: 0.6);
+        color: darken($color: $danger-color, $amount: 0.5);
+      }
 
 };

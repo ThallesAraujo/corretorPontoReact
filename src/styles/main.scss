@@ -8,6 +8,10 @@
     font-weight: 500;
 }
 
+@page { 
+    margin: 0.3cm;
+}
+
 .tabs{
     display: flex;
 
@@ -34,3 +38,38 @@
     width: 60%;
     height: 60%;
 }
+
+.message{
+    padding-left: 10px;
+}
+  
+  .message-success{
+    background-color: #bcdc1c;
+    color: #414c0b;
+  }
+  
+  .message{
+    transition: height 0.5s;
+    height: 0;
+    padding-top: 15px;
+  }
+  
+  #message{
+    transition-timing-function: ease;
+    -webkit-transition-timing-function: ease;
+  
+  }
+  
+  .message.in{
+    height: 40px;
+  }
+  
+  .message.out{
+    top: -1000px;
+    height: 0;
+  }
+  
+  .message.remove-pad{
+    padding-top: 0px;
+    color: transparent;
+  }

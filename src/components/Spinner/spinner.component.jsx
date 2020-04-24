@@ -14,7 +14,7 @@ const Spinner = () => {
             <p>Carregando...</p>
             <Loader
                 type="TailSpin"
-                color="#2a5b8c"
+                color="white"
                 height={100}
                 width={100}
                 className="spinner"

@@ -25,16 +25,27 @@ const Main = () => {
         })
 
         if (event.target.id === "inconsistencias"){
-            pontos = pontos.filter((ponto) => PontoService.isInconsistencia(ponto));
+            pontos = []
+            pontos = state.pontos.filter((ponto) => PontoService.isInconsistencia(ponto));
         }else{
+            pontos = []
             pontos = state.pontos
         }
 
-        dispatch({ pontosFilter: pontos })
+        dispatch({pontosFilter: []})
+        dispatch({pontosFilter: pontos})
     
     }
 
-    useEffect(()=> {}, [pontos])
+    useEffect(()=> {
+        var pontosStorage = JSON.parse(sessionStorage.getItem("pontos"))
+        if((pontos[0] === undefined || pontos[0].data === undefined)&&  pontosStorage !== undefined && pontosStorage !== null){
+            console.table(pontosStorage)
+            pontos = []
+            dispatch({pontos: pontosStorage})
+            dispatch({pontosFilter: pontosStorage.filter(ponto => PontoService.isInconsistencia(ponto))})
+        }
+    }, [])
 
     const updatePonto = (antigo, novo) => {
         const indice = pontos.indexOf(antigo)
@@ -57,7 +68,7 @@ const Main = () => {
            </div>
            <div>
                 {pontos.map( (ponto) => {
-                    return <Card ponto={ponto} updatePonto={updatePonto}></Card>
+                    return <Card key={ponto.data} ponto={ponto} updatePonto={updatePonto}></Card>
                 })}
            </div>
            <SheetViewer></SheetViewer>

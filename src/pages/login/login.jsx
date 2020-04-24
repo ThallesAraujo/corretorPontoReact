@@ -12,20 +12,50 @@ const Login = () => {
     dispatch({ [target.name]: target.value })
   }
 
+  const exibirMensagemErro = (mensagemErro) => {
+    const mensagem = document.getElementById('message');
+    if(mensagem.classList.contains('out')){
+      mensagem.classList.toggle('out');
+    }
+
+    if(mensagem.classList.contains('remove-pad')){
+      mensagem.classList.toggle('remove-pad');
+    }
+
+    if(mensagem.classList.contains('in')){
+      mensagem.classList.toggle('in');
+    }
+
+    mensagem.classList.add('message-error')
+            mensagem.innerText = mensagemErro;
+            mensagem.setAttribute('style', 'display: block')
+            mensagem.classList.toggle('in');
+            setTimeout(() =>{
+              mensagem.classList.toggle('out');
+              mensagem.classList.toggle('remove-pad');
+      }, 5000);
+}
+
+
   const login = () => {
-    
     dispatch({showSpinner: true})
     PontoService.getPontos(state.matricula, state.senha, (pontos) => {
       dispatch({ pontos })
-      dispatch({ pontosFilter: pontos.filter((ponto) => PontoService.isInconsistencia(ponto)) })
       dispatch({showSpinner: false})
+      sessionStorage.setItem("pontos", JSON.stringify(pontos))
       history.push("/main")
+    }, (error) => {
+      dispatch({showSpinner: false})
+      exibirMensagemErro(`Houve um problema: (${error})`)
     })
   }
 
+  
+
 
   return (
-    <div>
+    <div className="main-container">
+      <div class="message" id="message"></div>
       <div className="wide">
         <div className="container-h">
           <div className="clock-figure"></div>

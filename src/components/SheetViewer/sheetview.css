@@ -1,7 +1,12 @@
+.action-button {
+  cursor: pointer;
+  height: 40px !important;
+}
+
 .planview {
   position: fixed;
   bottom: 10px;
-  right: 10px;
+  right: 6em;
   -webkit-transition: ease-in-out 1s;
   transition: ease-in-out 1s;
 }
@@ -10,10 +15,6 @@
   position: absolute;
   top: 10px;
   right: 10px;
-}
-
-.planview-actionbar .action-button {
-  cursor: pointer;
 }
 
 .planview-container {
@@ -40,15 +41,52 @@
   transition: all 350ms cubic-bezier(0.6, 0.05, 0.28, 0.91);
 }
 
-.planview .pontos-container {
-  margin: 2em;
+.planview th {
+  padding: 1em;
 }
 
-.planview .pontos-container .ponto {
+.planview .btn-exportar-container {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  right: 1.5em;
+  bottom: 10px;
+}
+
+.planview .btn-exportar-container button {
+  height: 100%;
+}
+
+.planview .table-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+}
+
+.planview .table-container .pontos-container {
+  page-break-inside: auto;
+}
+
+.planview .table-container .pontos-container .ponto {
   min-width: 50px;
+  page-break-inside: avoid;
 }
 
-.planview .pontos-container .ponto-modificado {
+page-break-after:auto
+.planview .table-container .pontos-container .ponto-modificado {
   min-width: 50px;
 }
 /*# sourceMappingURL=sheetview.css.map */

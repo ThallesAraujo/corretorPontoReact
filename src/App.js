@@ -11,8 +11,8 @@ import {
 } from 'react-router-dom';
 
 function App() {
+
   return (
-    
     <GlobalStateProvider>
       <Router>
       <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Open+Sans&display=swap" rel="stylesheet"></link>
