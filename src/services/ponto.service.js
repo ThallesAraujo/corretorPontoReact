@@ -17,7 +17,7 @@ class PontoService {
             "cpf": senha.toString(10),
             "ano": date.getFullYear().toString(10),
             "mes": date.getMonth().toString(10)
-         }).then(response => {
+         }, {timeout: 500000}).then(response => {
              console.table(response)
              completion(response.data)
 
