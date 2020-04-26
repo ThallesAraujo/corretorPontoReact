@@ -16,7 +16,7 @@ function App() {
     <GlobalStateProvider>
       <Router>
       <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Open+Sans&display=swap" rel="stylesheet"></link>
-      <link href='https://css.gg/c' rel='stylesheet'></link>
+      <link href='https://css.gg/css' rel='stylesheet'></link>
       <div>
         <Spinner />
       <Switch>

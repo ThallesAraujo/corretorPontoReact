@@ -3,33 +3,35 @@ import './card.css'
 import { withRouter } from 'react-router-dom'
 import PontoService from '../../services/ponto.service'
 import { useGlobal } from '../../states/global'
+import moment from 'moment'
 
 const Card = (params) => {
 
     const [state, dispatch] = useGlobal()
 
     const diasDaSemana = {
-        0: "Dom",
-        1: "Seg",
-        2: "Ter",
-        3: "Qua",
-        4: "Qui",
-        5: "Sex",
-        6: "Sáb",
+        "Sun": "Dom",
+        "Mon": "Seg",
+        "Tue": "Ter",
+        "Wed": "Qua",
+        "Thu": "Qui",
+        "Fri": "Sex",
+        "Sat": "Sáb",
     }
 
     const ponto = params.ponto
     
     const getFomattedDate = (dateToFormat) => {
-        let date = new Date(dateToFormat)
-        return `${diasDaSemana[date.getDay()]} - ${appendZero(date.getDate())}/${appendZero(date.getMonth()+1)}/${date.getFullYear()}`
+        let toFormat = new Date(dateToFormat)
+        let date = moment(dateToFormat).add(1, "days")
+        return `${diasDaSemana[date.format("ddd")]} - ${date.format("DD/MM/YYYY")}`
     }
 
     const getFormattedTime = (dateToFormat) => {
 
         if(dateToFormat !== null && dateToFormat !== undefined && dateToFormat.length > 5){
-            let date = new Date(dateToFormat)
-            return `${appendZero(date.getHours())}:${appendZero(date.getMinutes())}`
+            
+            return `${moment(dateToFormat).format("HH:mm")}`
         }else{
             return dateToFormat
         }
@@ -70,14 +72,6 @@ const Card = (params) => {
                 marcarLinhaCompleta(ponto)
             }
             params.updatePonto(old, ponto)
-        }
-    }
-
-    const appendZero = (num) =>{
-        if (num < 10){
-            return `0${num}`
-        }else{
-            return `${num}`
         }
     }
 
