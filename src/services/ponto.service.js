@@ -1,5 +1,6 @@
 import GERNINI_URL from "./helper"
 import axios from 'axios'
+import moment from 'moment'
 
 class PontoService {
 
@@ -29,8 +30,8 @@ class PontoService {
 
     isInconsistencia = (ponto) => {
 
-        let date = new Date(ponto.data)
-        let diaHoje = new Date()
+        let date = moment(ponto.data).add(1, "days")
+        let diaHoje = moment(new Date())
 
         var cont = 0
         for(var i = 1; i< 5; i++){
@@ -47,10 +48,11 @@ class PontoService {
                     today.getMonth() === data.getMonth() &&
                     today.getDate() === data.getDate()
         }
+    
 
         return (ponto["is_falta"] 
-                && (date < diaHoje && !isDiaHoje(diaHoje, date)) 
-                && (date?.getDay() !== 0 && date?.getDay() !== 6)
+                && (date < diaHoje && date !== diaHoje) 
+                && (date.format("ddd") !== "Sat" && date.format("ddd") !== "Sun")
                 && (cont % 2 > 0 || cont === 0))
     }
 
