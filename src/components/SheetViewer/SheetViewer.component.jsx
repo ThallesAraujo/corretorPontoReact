@@ -46,7 +46,7 @@ const SheetViewer = () => {
 
         if(dateToFormat !== null && dateToFormat !== undefined && dateToFormat.length > 5){
             
-            return `${moment(dateToFormat).format("HH:mm")}`
+            return `${moment(dateToFormat).add(3,"hours").format("HH:mm")}`
         }else{
             return dateToFormat
         }
