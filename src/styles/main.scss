@@ -6,10 +6,20 @@
 *{
     font-family: 'Open Sans', sans-serif;
     font-weight: 500;
+    color-adjust: exact; 
+    -webkit-print-color-adjust: exact; 
 }
 
-@page { 
-    margin: 0.3cm;
+@page {
+    page-break-after:always;
+    size: A4;
+}
+
+@media print{
+  .pontos-container{
+      padding: 2em;
+      width: 100%;
+  }
 }
 
 .tabs{

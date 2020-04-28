@@ -4,6 +4,12 @@
     $background-color: #f1f3f6;
     $danger-color: #ff7167;
 
+    @media print{
+        *{
+            background-color: $background-color;
+        }
+    }
+
     .clock-figure{
         content: url('./assets/undraw_time_management.svg')
     }
@@ -73,6 +79,16 @@
         table{
             background-color: darken($color: $input-color, $amount: 10);
         }
+    }
+
+    .sabado{
+        border: 2px solid lighten($color: grey, $amount: 40);
+        color: lighten($color: grey, $amount: 15);
+    }
+
+    .domingo{
+        border: 2px solid lighten($color: grey, $amount: 40);
+        color: lighten($color: grey, $amount: 20);
     }
 
     .ponto{

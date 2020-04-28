@@ -4,6 +4,13 @@
     $background-color: #1d2139;
     $danger-color: #f57167;
 
+
+    @media print{
+        *{
+            background-color: darken($color: $input-color, $amount: 10);
+        }
+    }
+
     html{
         background-color:rgb(29, 33, 57);
         color: white;
@@ -69,10 +76,21 @@
 
     .pontos-container{
         background-color: darken($color: $input-color, $amount: 10);
+        -webkit-print-color-adjust: exact !important;
 
         table{
             background-color: darken($color: $input-color, $amount: 10);
         }
+    }
+
+    .sabado{
+        border: 2px solid darken($color: rgba($color: $accent-color, $alpha: 0.1), $amount: 10);
+        color: rgba($color: lightGrey, $alpha: 0.3);
+    }
+
+    .domingo{
+        border: 2px solid darken($color: rgba($color: $accent-color, $alpha: 0.1), $amount: 10);
+        color: rgba($color: lightGrey, $alpha: 0.5);
     }
 
     .ponto{

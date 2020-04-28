@@ -1,3 +1,9 @@
+@media print and (prefers-color-scheme: light) {
+  * {
+    background-color: #f1f3f6;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   .clock-figure {
     content: url("./assets/undraw_time_management.svg");
@@ -52,6 +58,14 @@
   .pontos-container table {
     background-color: rgba(60, 48, 255, 0.5);
   }
+  .sabado {
+    border: 2px solid #e6e6e6;
+    color: #a6a6a6;
+  }
+  .domingo {
+    border: 2px solid #e6e6e6;
+    color: #b3b3b3;
+  }
   .ponto {
     border: 2px solid #dbe0e8;
     color: #5b6f8d;
@@ -64,6 +78,12 @@
   .message-error {
     background-color: rgba(255, 113, 103, 0.4);
     color: #ff6f64;
+  }
+}
+
+@media print and (prefers-color-scheme: dark) {
+  * {
+    background-color: #252847;
   }
 }
 
@@ -118,9 +138,18 @@
   }
   .pontos-container {
     background-color: #252847;
+    -webkit-print-color-adjust: exact !important;
   }
   .pontos-container table {
     background-color: #252847;
+  }
+  .sabado {
+    border: 2px solid rgba(110, 102, 255, 0.1);
+    color: rgba(211, 211, 211, 0.3);
+  }
+  .domingo {
+    border: 2px solid rgba(110, 102, 255, 0.1);
+    color: rgba(211, 211, 211, 0.5);
   }
   .ponto {
     border: 2px solid #363b69;
@@ -186,10 +215,20 @@
 * {
   font-family: 'Open Sans', sans-serif;
   font-weight: 500;
+  color-adjust: exact;
+  -webkit-print-color-adjust: exact;
 }
 
 @page {
-  margin: 0.3cm;
+  page-break-after: always;
+  size: A4;
+}
+
+@media print {
+  .pontos-container {
+    padding: 2em;
+    width: 100%;
+  }
 }
 
 .tabs {
