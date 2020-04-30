@@ -68,7 +68,7 @@ const Login = () => {
               <div className="stack">
                 <div className="stack" style={{width: "100%"}}>
                 <input className="textfield" type="number" name="matricula" id="login" placeholder="Usuário" onChange={ handleChange }/>
-                <input className="textfield" maxLength="3" minLength="3" type="password" name="senha" id="password" placeholder="Senha" onChange={ handleChange }/>
+                <input className="textfield" minLength="3" type="password" name="senha" id="password" placeholder="Senha" onChange={ handleChange }/>
                 <input type="button" className="button" value="Entrar"  onClick={ () => login() }/>
                 </div>
               </div>
