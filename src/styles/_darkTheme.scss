@@ -68,6 +68,10 @@
 
     .button{
         background-color: $accent-color;
+
+        &-danger{
+            background-color: transparentize($color: $danger-color, $amount: 0.3);
+        }
     }
 
     .main-title{

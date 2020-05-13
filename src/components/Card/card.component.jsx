@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import './card.css'
 import { withRouter } from 'react-router-dom'
 import PontoService from '../../services/ponto.service'
@@ -8,6 +8,8 @@ import moment from 'moment'
 const Card = (params) => {
 
     const [state, dispatch] = useGlobal()
+
+    const form = useRef()
 
     const diasDaSemana = {
         "Sun": "Dom",
@@ -47,6 +49,21 @@ const Card = (params) => {
         }
     }
 
+    const limparEdicoes = () =>{
+        let old = {...ponto}
+        ponto["camposEditados"] = []
+        ponto["isEditado"] = false
+        ponto.isInconsistencia = true
+        for (var i = 1; i < 5; i++){
+            ponto[`entrada${i}`] = ""
+            ponto[`saida${i}`] = ""
+            form["current"][i]["value"] = ""
+        }
+        ponto["justificativa"] = ""
+        params.updatePonto(old, ponto)
+        
+    }
+
     const marcarDebito = () => {
         let old = ponto
         marcarLinhaCompleta(ponto)
@@ -77,7 +94,7 @@ const Card = (params) => {
 
 
     return (
-        <div className={PontoService.isInconsistencia(ponto) ? "card card-inconsistencia" : "card"}>
+        <form className={PontoService.isInconsistencia(ponto) ? "card card-inconsistencia" : "card"} ref={form}>
             <div className="date-container">
                 <div className="item"><i class="gg-calendar-today"></i></div>
                 <div className="item"><p>{ getFomattedDate(ponto.data) }</p></div>
@@ -94,10 +111,11 @@ const Card = (params) => {
             </div>
             <div>
                 <p>Falta</p>
-                <input type="text" className="textfield" name="justificativa" id="justificativa" value={ponto["justificativa"] !== null && ponto["justificativa"] !== undefined ? ponto["justificativa"]: ""} placeholder="Digite uma justificativa de falta" onChange={handleEdit}/>
+                <input type="text" className="textfield" name="justificativa" id="justificativa" maxLength="50" value={ponto["justificativa"] !== null && ponto["justificativa"] !== undefined ? ponto["justificativa"]: ""} placeholder="Digite uma justificativa de falta" onChange={handleEdit}/>
                 <input type="button" className="button" value="Marcar como débito no banco de horas" onClick={marcarDebito}/>
+                <input type="button" className="button button-danger" value="Limpar Edições" onClick={limparEdicoes}/>
             </div>
-        </div>
+        </form>
     )
 
 

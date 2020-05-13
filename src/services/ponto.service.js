@@ -35,10 +35,10 @@ class PontoService {
 
         var cont = 0
         for(var i = 1; i< 5; i++){
-            if (ponto[`entrada${i}`] !== null){
+            if (ponto[`entrada${i}`] !== null && ponto[`entrada${i}`] !== ""){
                 cont = cont + 1
             }
-            if (ponto[`saida${i}`] !== null){
+            if (ponto[`saida${i}`] !== null && ponto[`saida${i}`] !== ""){
                 cont = cont + 1
             }
         }
@@ -50,8 +50,7 @@ class PontoService {
         }
     
 
-        return (ponto["is_falta"] 
-                && (date < diaHoje && date !== diaHoje) 
+        return ((date < diaHoje && date !== diaHoje) 
                 && (date.format("ddd") !== "Sat" && date.format("ddd") !== "Sun")
                 && (cont % 2 > 0 || cont === 0))
     }

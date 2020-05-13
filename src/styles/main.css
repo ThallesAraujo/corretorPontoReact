@@ -46,6 +46,9 @@
     background-color: #6C63FF;
     color: white;
   }
+  .button-danger {
+    background-color: #cd0d00;
+  }
   .main-title {
     color: #6C63FF;
   }
@@ -132,6 +135,9 @@
   }
   .button {
     background-color: #9e99ff;
+  }
+  .button-danger {
+    background-color: rgba(245, 113, 103, 0.7);
   }
   .main-title {
     color: #9e99ff;

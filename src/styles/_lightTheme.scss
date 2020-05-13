@@ -63,6 +63,11 @@
     .button{
         background-color: $accent-color;
         color: white;
+
+        &-danger{
+            background-color: darken($color: $danger-color, $amount: 30);
+        }
+
     }
 
     .main-title{

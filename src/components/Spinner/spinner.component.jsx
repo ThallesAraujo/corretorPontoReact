@@ -11,6 +11,8 @@ const Spinner = () => {
     const visible = state.showSpinner
     return (
         <div className={visible ? 'spinner-container' : 'hidden'}>
+            <div className="spinner-content">
+            <div className="centered">
             <p>Carregando...</p>
             <Loader
                 type="TailSpin"
@@ -19,6 +21,8 @@ const Spinner = () => {
                 width={100}
                 className="spinner"
             />
+            </div>
+            </div>
         </div>
     )
 }
