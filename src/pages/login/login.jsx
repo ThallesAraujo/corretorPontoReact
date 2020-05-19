@@ -3,6 +3,7 @@ import { useGlobal } from '../../states/global'
 import './login.css'
 import PontoService from '../../services/ponto.service'
 import { useHistory } from "react-router-dom";
+import moment from 'moment';
 
 const Login = () => {
   var [state, dispatch] = useGlobal()
@@ -44,6 +45,9 @@ const Login = () => {
     PontoService.getPontos(state.matricula, state.senha, (pontos) => {
       dispatch({ pontos })
       dispatch({showSpinner: false})
+      var date = new Date()
+      dispatch({mes: date.getMonth().toString(10)})
+      dispatch({ano: date.getFullYear().toString(10)})
       sessionStorage.setItem("pontos", JSON.stringify(pontos))
       history.push("/main")
     }, (error) => {

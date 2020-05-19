@@ -1,4 +1,18 @@
 .container{
     margin: 2em;
     overflow: hidden;
+
+    .container-select{
+        .content{
+            display: flex;
+            .select{
+                margin-right: 10px;
+                
+            }
+            *{
+                margin-bottom: 20px;
+            }
+        }
+    }
+
 }

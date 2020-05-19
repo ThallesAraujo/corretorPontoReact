@@ -13,11 +13,15 @@ class PontoService {
             date.setMonth(date.getMonth()+1)
         }
 
+        this.getPontosDaData(date.getMonth().toString(10), date.getFullYear().toString(10), matricula, senha, completion, completionError)
+    }
+
+    getPontosDaData = (mes, ano, matricula, senha, completion, completionError) => {
         axios.post(`${GERNINI_URL}pontoHora`, { 
             "matricula": matricula.toString(10),
             "cpf": senha.toString(10),
-            "ano": date.getFullYear().toString(10),
-            "mes": date.getMonth().toString(10)
+            "ano": ano,
+            "mes": mes
          }, {timeout: 500000}).then(response => {
              console.table(response)
              completion(response.data)

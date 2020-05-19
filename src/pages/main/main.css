@@ -2,4 +2,18 @@
   margin: 2em;
   overflow: hidden;
 }
+
+.container .container-select .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container .container-select .content .select {
+  margin-right: 10px;
+}
+
+.container .container-select .content * {
+  margin-bottom: 20px;
+}
 /*# sourceMappingURL=main.css.map */

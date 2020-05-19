@@ -36,7 +36,7 @@
   .ponto-inconsistente {
     color: #6C63FF;
   }
-  .textfield {
+  .textfield, select {
     background-color: transparent;
     outline-color: #6C63FF;
     border: 2px solid rgba(108, 99, 255, 0.5);
@@ -126,7 +126,7 @@
   .ponto-inconsistente {
     color: #9e99ff;
   }
-  .textfield {
+  .textfield, .select {
     color: white;
     background-color: transparent;
     outline-color: #9e99ff;
@@ -272,6 +272,11 @@
 .message-success {
   background-color: #bcdc1c;
   color: #414c0b;
+}
+
+.select {
+  margin: 2px;
+  font-size: 14px;
 }
 
 .message {

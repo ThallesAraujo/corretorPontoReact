@@ -53,7 +53,7 @@
         color: $accent-color
     }
 
-    .textfield{
+    .textfield, select{
         background-color: transparent;
         outline-color: $accent-color;
         border: 2px solid $input-color;
