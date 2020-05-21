@@ -7,8 +7,43 @@
   position: fixed;
   bottom: 10px;
   right: 6em;
+  min-width: 90%;
   -webkit-transition: ease-in-out 1s;
   transition: ease-in-out 1s;
+}
+
+.planview .handler {
+  background-color: transparent;
+  border: none;
+  min-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.planview .handler i {
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.planview .handler-closed {
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+}
+
+.planview .handler-open {
+  -webkit-transform: translateY(-30vh);
+          transform: translateY(-30vh);
+}
+
+.planview .handler-open i {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 .planview-actionbar {

@@ -49,6 +49,9 @@
   .button-danger {
     background-color: #cd0d00;
   }
+  .handler {
+    color: #6C63FF;
+  }
   .main-title {
     color: #6C63FF;
   }
@@ -138,6 +141,9 @@
   }
   .button-danger {
     background-color: rgba(245, 113, 103, 0.7);
+  }
+  .handler {
+    color: #9e99ff;
   }
   .main-title {
     color: #9e99ff;

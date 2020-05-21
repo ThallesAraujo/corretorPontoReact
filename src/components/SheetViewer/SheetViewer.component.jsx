@@ -68,10 +68,12 @@ const SheetViewer = () => {
         }
     }
 
-    const toggleViewer = () => {
+    const toggleViewer = (event) => {
         const viewer = document.getElementsByClassName('planview-container')[0]
         viewer.classList.toggle('planview-hidden')
         viewer.classList.toggle('planview-show')
+        event.target.parentNode.classList.toggle('handler-closed')
+        event.target.parentNode.classList.toggle('handler-open')
     }
 
     const btnExportar = () => {
@@ -87,13 +89,10 @@ const SheetViewer = () => {
 
     return (
         <div className="planview">
-            <button className="button action-button" onClick={toggleViewer} title="Pré-visualizar">
-                <i className="gg-eye"></i>
-            </button>
+            <div className="handler handler-closed" title="Expandir ou contrair o painel de visualização">
+                <i class="gg-chevron-up" onClick={toggleViewer}></i>
+            </div>
             <div className="planview-hidden planview-container">
-                <div className="planview-actionbar">
-                    <i class="gg-close action-button" onClick={toggleViewer}></i>
-                </div>
                 <div className="table-container" >
                     <table className="pontos-container" ref={tableRef}>
                         <tr>
