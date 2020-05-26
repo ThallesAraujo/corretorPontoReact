@@ -5,6 +5,7 @@ import PontoService from '../../services/ponto.service'
 import { useGlobal } from '../../states/global'
 import moment from 'moment'
 import ValidationUtils from '../../utils/ValidationUtils'
+import TimeUtils from '../../utils/TimeUtils'
 
 const Card = (params) => {
 
@@ -95,17 +96,19 @@ const Card = (params) => {
     }
 
     const getTempoFormatado = (intervalo) => {
-        if (intervalo > 59) {
-            var minutos = intervalo % 60
-            var minutosText = `${minutos}`
-            if (minutos < 9) {
-                minutosText = "0" + minutos
-            }
-            return Math.floor(intervalo / 60) + ":" + minutosText
-        } else {
-            console.log("Intervalo:", intervalo)
-            return "00:" + ((ValidationUtils.isNull(intervalo) || isNaN(intervalo)) ? "00" : intervalo)
-        }
+        var duration = moment.duration(intervalo, "minutes")
+        return moment.utc(duration.asMilliseconds()).format('HH:mm');
+        // if (intervalo > 59) {
+        //     var minutos = intervalo % 60
+        //     var minutosText = `${minutos}`
+        //     if (minutos < 9) {
+        //         minutosText = "0" + minutos
+        //     }
+        //     return Math.floor(intervalo / 60) + ":" + minutosText
+        // } else {
+        //     console.log("Intervalo:", intervalo)
+        //     return "00:" + ((ValidationUtils.isNull(intervalo) || isNaN(intervalo)) ? "00" : intervalo)
+        // }
     }
 
     const getHorasTrabalhadas = () => {
@@ -115,45 +118,34 @@ const Card = (params) => {
             ponto["horasTrabalhadas"] = "00:00"
             params.updatePonto(old, ponto)
         } else {
-            var intervalo = 0
-            var intervalo2 = 0
-            var intervalo3 = 0
-            if (!ValidationUtils.isNull(ponto.entrada2)) {
-                intervalo = moment(ponto.saida1, "HH:mm").diff(moment(ponto.entrada2, "HH:mm"))
-            }
-            if (!ValidationUtils.isNull(ponto.entrada3)) {
-                intervalo2 = moment(ponto.saida2, "HH:mm").diff(moment(ponto.entrada3, "HH:mm"))
-            }
-            if (!ValidationUtils.isNull(ponto.entrada4)) {
-                intervalo3 = moment(ponto.saida3, "HH:mm").diff(moment(ponto.entrada4, "HH:mm"))
-            }
-
-            intervalo = intervalo + intervalo2 + intervalo3
-
-            var ultimoPonto = undefined
-            for (var i = 4; i > 0; i--) {
-                if (!ValidationUtils.isNull(ponto[`saida${i}`])) {
-                    ultimoPonto = ponto[`saida${i}`]
-                    break
-                }
-            }
-
-            var intervaloTrabalhado = moment.duration(moment(ponto.entrada1, "HH:mm").diff(moment(ultimoPonto, "HH:mm")))
-            intervaloTrabalhado = intervaloTrabalhado * -1
-            intervalo = intervalo * -1
-            intervaloTrabalhado = intervaloTrabalhado - intervalo
-            intervaloTrabalhado = (intervaloTrabalhado / 1000) / 60
-            var debitoEmMinutos = (intervalo / 1000) / 60
+            var primeiroHorario = TimeUtils.getTimeDiff(ponto.entrada1, ponto.saida1)
+            //var [segundoHorario, terceiroHorario, quartoHorario] = [0,0,0]
+            var segundoHorario = TimeUtils.getTimeDiff(ponto.entrada2, ponto.saida2)
+            var terceiroHorario = TimeUtils.getTimeDiff(ponto.entrada3, ponto.saida4)
+            var quartoHorario = TimeUtils.getTimeDiff(ponto.entrada4, ponto.saida4)
             
+            
+            console.log("Intervalos ", primeiroHorario, segundoHorario, terceiroHorario, quartoHorario)
+
+            var intervaloTrabalhado = primeiroHorario + segundoHorario + terceiroHorario + quartoHorario
+            
+            
+            intervaloTrabalhado = (intervaloTrabalhado / 1000) / 60
+            intervaloTrabalhado = Math.abs(intervaloTrabalhado)
+            console.log("totalEmMinutos =", intervaloTrabalhado)
             var old = { ...ponto }
             ponto["horasTrabalhadas"] = intervaloTrabalhado
+            ponto["debitoHoras"] = 0
+            ponto["creditoHoras"] = 0
             if(intervaloTrabalhado < 480){
                 ponto["debitoHoras"] = (480 - intervaloTrabalhado)
             }else{
-                if (debitoEmMinutos > 60) {
-                    ponto["debitoHoras"] = debitoEmMinutos
-                }else{
-                    ponto["debitoHoras"] = ""
+                if (intervaloTrabalhado > 480 && !ValidationUtils.isNull(ponto.entrada2)){
+                    var horasExtras = intervaloTrabalhado - 480
+                    console.log("horasExtras",horasExtras)
+                    if (horasExtras > 45){
+                        ponto["creditoHoras"] = horasExtras
+                    }
                 }
             }
             params.updatePonto(old, ponto)
@@ -167,11 +159,13 @@ const Card = (params) => {
             <div className="date-container">
                 <div className="item"><i class="gg-calendar-today"></i></div>
                 <div className="item"><p>{getFomattedDate(ponto.data)}</p></div>
+                <div className="item"></div>
+                <div className="item"><i className="gg-sand-clock"></i></div>
+                <p className="item" title="Horas trabalhadas">{getTempoFormatado(ponto.horasTrabalhadas)}</p>
+                <p className="item" title="Débito em horas" style={{display: ponto.debitoHoras > 0? "block": "none", color: "red"}}>({getTempoFormatado(ponto.debitoHoras)})</p>
+                <p className="item" title="Crédito em horas" style={{display: ponto.creditoHoras > 0? "block": "none", color: "green"}}>({getTempoFormatado(ponto.creditoHoras)})</p>
             </div>
-            <div className="horas-info">
-                <p>Horas trabalhadas: {getTempoFormatado(ponto.horasTrabalhadas)}</p>
-                <p>{getTempoFormatado(ponto.debitoHoras)}</p>
-            </div>
+            
 
             <div className="ponto-container">
                 <input type="text" className="textfield" name="ponto1" id="entrada1" value={getFormattedTime(ponto.entrada1)} onChange={handleEdit} />
