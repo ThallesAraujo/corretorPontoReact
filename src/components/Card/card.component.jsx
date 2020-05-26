@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import './card.css'
 import { withRouter } from 'react-router-dom'
 import PontoService from '../../services/ponto.service'
@@ -23,6 +23,7 @@ const Card = (params) => {
         "Sat": "Sáb",
     }
 
+    
     const ponto = params.ponto
 
     const getFomattedDate = (dateToFormat) => {
@@ -96,40 +97,24 @@ const Card = (params) => {
     }
 
     const getTempoFormatado = (intervalo) => {
+        getHorasTrabalhadas(false)
         var duration = moment.duration(intervalo, "minutes")
         return moment.utc(duration.asMilliseconds()).format('HH:mm');
-        // if (intervalo > 59) {
-        //     var minutos = intervalo % 60
-        //     var minutosText = `${minutos}`
-        //     if (minutos < 9) {
-        //         minutosText = "0" + minutos
-        //     }
-        //     return Math.floor(intervalo / 60) + ":" + minutosText
-        // } else {
-        //     console.log("Intervalo:", intervalo)
-        //     return "00:" + ((ValidationUtils.isNull(intervalo) || isNaN(intervalo)) ? "00" : intervalo)
-        // }
     }
 
-    const getHorasTrabalhadas = () => {
+    const getHorasTrabalhadas = (isEdicao=true) => {
 
         if (ValidationUtils.isNull(ponto.entrada1)) {
             var old = { ...ponto }
             ponto["horasTrabalhadas"] = "00:00"
-            params.updatePonto(old, ponto)
+            
         } else {
             var primeiroHorario = TimeUtils.getTimeDiff(ponto.entrada1, ponto.saida1)
-            //var [segundoHorario, terceiroHorario, quartoHorario] = [0,0,0]
+            
             var segundoHorario = TimeUtils.getTimeDiff(ponto.entrada2, ponto.saida2)
             var terceiroHorario = TimeUtils.getTimeDiff(ponto.entrada3, ponto.saida4)
             var quartoHorario = TimeUtils.getTimeDiff(ponto.entrada4, ponto.saida4)
-            
-            
-            console.log("Intervalos ", primeiroHorario, segundoHorario, terceiroHorario, quartoHorario)
-
             var intervaloTrabalhado = primeiroHorario + segundoHorario + terceiroHorario + quartoHorario
-            
-            
             intervaloTrabalhado = (intervaloTrabalhado / 1000) / 60
             intervaloTrabalhado = Math.abs(intervaloTrabalhado)
             console.log("totalEmMinutos =", intervaloTrabalhado)
@@ -138,16 +123,25 @@ const Card = (params) => {
             ponto["debitoHoras"] = 0
             ponto["creditoHoras"] = 0
             if(intervaloTrabalhado < 480){
-                ponto["debitoHoras"] = (480 - intervaloTrabalhado)
+                var debitoHoras = 480 - intervaloTrabalhado
+                if(ValidationUtils.isNull(ponto.entrada2)){
+                    debitoHoras -= 60
+                }
+                ponto["debitoHoras"] = debitoHoras
             }else{
-                if (intervaloTrabalhado > 480 && !ValidationUtils.isNull(ponto.entrada2)){
+                if (intervaloTrabalhado > 480){
                     var horasExtras = intervaloTrabalhado - 480
-                    console.log("horasExtras",horasExtras)
+                    if(ValidationUtils.isNull(ponto.entrada2)){
+                        horasExtras -= 60
+                    }
+
                     if (horasExtras > 45){
                         ponto["creditoHoras"] = horasExtras
                     }
                 }
             }
+        }
+        if(isEdicao){
             params.updatePonto(old, ponto)
         }
 

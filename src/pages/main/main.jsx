@@ -1,4 +1,4 @@
-import React, { ReactDOM, useEffect, useState, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { useGlobal } from '../../states/global'
 import './main.css'
 import Card from '../../components/Card/card.component'
