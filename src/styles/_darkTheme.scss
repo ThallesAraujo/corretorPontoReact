@@ -3,6 +3,7 @@
     $input-color: rgb(54, 59, 105);
     $background-color: #1d2139;
     $danger-color: #f57167;
+    $success-color: #546833;
 
 
     @media print{
@@ -119,5 +120,10 @@
         background-color: transparentize($color: $danger-color, $amount: 0.6);
         color: darken($color: $danger-color, $amount: 0.5);
       }
+    
+    .message-success{
+        background-color: transparentize($color: $success-color, $amount: 0.6);
+        color: darken($color: $success-color, $amount: 0.5);
+    }
 
 };

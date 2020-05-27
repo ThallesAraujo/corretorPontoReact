@@ -1,15 +1,16 @@
-.action-button{
-    cursor: pointer;
-    height: 40px!important;
-}
-
 .planview{
-
     position: fixed;
     bottom: 10px;
     right: 6em;
     min-width: 90%;
     transition: ease-in-out 1s;
+
+    .btn-email{
+        position: absolute;
+        z-index: 40;
+        bottom: 1.5%;
+        right: 0;
+    }
 
     .handler{
         background-color: transparent;

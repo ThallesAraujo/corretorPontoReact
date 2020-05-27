@@ -12,8 +12,6 @@ class TimeUtils{
             return 0
         }
 
-        
-
         if (obj1 !== null && obj1.length > 5){
             obj1 = obj1.split("T")[1].split(".")[0].substring(0,5)
         }

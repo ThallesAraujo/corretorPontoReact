@@ -6,6 +6,7 @@ import SheetViewer from '../../components/SheetViewer/SheetViewer.component'
 import PontoService from '../../services/ponto.service'
 import months from './utils/meses'
 import moment from 'moment'
+import MessageService from '../../services/messages.service';
 
 const Main = () => {
 
@@ -39,31 +40,7 @@ const Main = () => {
     
     }
 
-    const exibirMensagemErro = (mensagemErro) => {
-        const mensagem = document.getElementById('message');
-        if (mensagem !== undefined && mensagem !== null){
-          if(mensagem.classList.contains('out')){
-            mensagem.classList.toggle('out');
-          }
-      
-          if(mensagem.classList.contains('remove-pad')){
-            mensagem.classList.toggle('remove-pad');
-          }
-      
-          if(mensagem.classList.contains('in')){
-            mensagem.classList.toggle('in');
-          }
-      
-          mensagem.classList.add('message-error')
-                  mensagem.innerText = mensagemErro;
-                  mensagem.setAttribute('style', 'display: block')
-                  mensagem.classList.toggle('in');
-                  setTimeout(() =>{
-                    mensagem.classList.toggle('out');
-                    mensagem.classList.toggle('remove-pad');
-            }, 5000);
-        }
-    }
+
 
     const handleChangeMonth = (event) => {
         handleChangePeriodo(meses.indexOf(event.target.value)+1, state.ano)
@@ -87,7 +64,7 @@ const Main = () => {
         }, 
         (error) => {
             dispatch({showSpinner: false})
-            exibirMensagemErro(`Houve um problema: (${error})`)
+            MessageService.exibirMensagemErro(`Houve um problema: (${error})`)
         })
     }
 
@@ -149,7 +126,7 @@ const Main = () => {
                     return <Card key={ponto.data} ponto={ponto} updatePonto={updatePonto}></Card>
                 })}
            </div>
-           <SheetViewer></SheetViewer>
+           <SheetViewer exibirMensagemSucesso={MessageService.exibirMensagemSucesso}></SheetViewer>
        </div>
    );
 

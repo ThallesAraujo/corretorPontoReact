@@ -19,6 +19,7 @@ function App() {
       <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Open+Sans&display=swap" rel="stylesheet"></link>
       <div>
         <Spinner />
+        <div class="message" id="message"></div>
       <Switch>
           <Route path="/" exact={true} component={Login}></Route>
           <Route path="/main" component={Main}></Route>

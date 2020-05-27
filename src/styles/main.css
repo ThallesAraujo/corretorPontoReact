@@ -85,6 +85,10 @@
     background-color: rgba(255, 113, 103, 0.4);
     color: #ff6f64;
   }
+  .message-success {
+    background-color: rgba(255, 113, 103, 0.4);
+    color: #ff6f64;
+  }
 }
 
 @media print and (prefers-color-scheme: dark) {
@@ -177,6 +181,10 @@
   .message-error {
     background-color: rgba(245, 113, 103, 0.4);
     color: #f56f65;
+  }
+  .message-success {
+    background-color: rgba(84, 104, 51, 0.4);
+    color: #536632;
   }
 }
 

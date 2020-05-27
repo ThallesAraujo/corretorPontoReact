@@ -3,10 +3,14 @@ import { useGlobal } from '../../states/global'
 import './sheetview.css'
 import ReactToPrint from 'react-to-print';
 import moment from 'moment'
+import EmailService from '../../services/mail.service';
+import MailStyler from '../../services/mail.styler';
+import ValidationUtils from '../../utils/ValidationUtils';
+import MessageService from '../../services/messages.service';
 
-const SheetViewer = () => {
+const SheetViewer = (props) => {
 
-    const [state] = useGlobal()
+    const [state, dispatch] = useGlobal()
 
     const tableRef = useRef();
 
@@ -86,12 +90,36 @@ const SheetViewer = () => {
         )
     }
 
+    const enviarEmail = () => {
+        var email = prompt("Informe seu e-mail corporativo")
+        if (!ValidationUtils.isNull(email)){
+            var mailContent = tableRef.current.outerHTML
+            console.log(mailContent)
+            var mailBody = `${mailContent}`
+
+            mailBody = MailStyler.styleMail(mailBody)
+            dispatch({showSpinner: true})
+            EmailService.sendEmail("Pontos corrigidos: Corretor de Ponto", [email], mailBody, (response) => {
+                props.exibirMensagemSucesso("E-mail enviado!")
+                dispatch({showSpinner: false})
+            }, 
+            (error) =>{
+                props.exibirMensagemSucesso("E-mail enviado!")
+                dispatch({showSpinner: false})
+            })
+        }
+    }
+
 
     return (
         <div className="planview">
+            <button className="button btn-email" title="Enviar por e-mail" onClick={enviarEmail}>
+                    <i className="gg-mail"></i>
+            </button>
             <div className="handler handler-closed" title="Expandir ou contrair o painel de visualização">
                 <i class="gg-chevron-up" onClick={toggleViewer}></i>
             </div>
+        
             <div className="planview-hidden planview-container">
                 <div className="table-container" >
                     <table className="pontos-container" ref={tableRef}>

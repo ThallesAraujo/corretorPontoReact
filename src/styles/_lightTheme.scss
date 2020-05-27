@@ -3,6 +3,7 @@
     $input-color: transparentize($accent-color, 0.5);
     $background-color: #f1f3f6;
     $danger-color: #ff7167;
+    $color-success: #6b8b43;
 
     @media print{
         *{
@@ -111,6 +112,11 @@
     }
 
     .message-error{
+        background-color: transparentize($color: $danger-color, $amount: 0.6);
+        color: darken($color: $danger-color, $amount: 0.5);
+      }
+
+      .message-success{
         background-color: transparentize($color: $danger-color, $amount: 0.6);
         color: darken($color: $danger-color, $amount: 0.5);
       }
