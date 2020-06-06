@@ -6,6 +6,7 @@ import { useGlobal } from '../../states/global'
 import moment from 'moment'
 import ValidationUtils from '../../utils/ValidationUtils'
 import TimeUtils from '../../utils/TimeUtils'
+import InputMask from 'react-input-mask';
 
 const Card = (params) => {
 
@@ -161,14 +162,14 @@ const Card = (params) => {
             
 
             <div className="ponto-container">
-                <input type="text" className="textfield" name="ponto1" id="entrada1" value={getFormattedTime(ponto.entrada1)} onChange={handleEdit} />
-                <input type="text" className="textfield" name="ponto2" id="saida1" value={getFormattedTime(ponto.saida1)} onChange={handleEdit} />
-                <input type="text" className="textfield" name="ponto3" id="entrada2" value={getFormattedTime(ponto.entrada2)} onChange={handleEdit} />
-                <input type="text" className="textfield" name="ponto4" id="saida2" value={getFormattedTime(ponto.saida2)} onChange={handleEdit} />
-                <input type="text" className="textfield" name="ponto5" id="entrada3" value={getFormattedTime(ponto.entrada3)} onChange={handleEdit} />
-                <input type="text" className="textfield" name="ponto6" id="saida3" value={getFormattedTime(ponto.saida3)} onChange={handleEdit} />
-                <input type="text" className="textfield" name="ponto7" id="entrada4" value={getFormattedTime(ponto.entrada4)} onChange={handleEdit} />
-                <input type="text" className="textfield" name="ponto8" id="saida4" value={getFormattedTime(ponto.saida4)} onChange={handleEdit} />
+                <InputMask mask ="99:99" type="text" className="textfield" name="ponto1" id="entrada1" value={getFormattedTime(ponto.entrada1)} onChange={handleEdit} />
+                <InputMask mask ="99:99" type="text" className="textfield" name="ponto2" id="saida1" value={getFormattedTime(ponto.saida1)} onChange={handleEdit} />
+                <InputMask mask ="99:99" type="text" className="textfield" name="ponto3" id="entrada2" value={getFormattedTime(ponto.entrada2)} onChange={handleEdit} />
+                <InputMask mask ="99:99" type="text" className="textfield" name="ponto4" id="saida2" value={getFormattedTime(ponto.saida2)} onChange={handleEdit} />
+                <InputMask mask ="99:99" type="text" className="textfield" name="ponto5" id="entrada3" value={getFormattedTime(ponto.entrada3)} onChange={handleEdit} />
+                <InputMask mask ="99:99" type="text" className="textfield" name="ponto6" id="saida3" value={getFormattedTime(ponto.saida3)} onChange={handleEdit} />
+                <InputMask mask ="99:99" type="text" className="textfield" name="ponto7" id="entrada4" value={getFormattedTime(ponto.entrada4)} onChange={handleEdit} />
+                <InputMask mask ="99:99" type="text" className="textfield" name="ponto8" id="saida4" value={getFormattedTime(ponto.saida4)} onChange={handleEdit} />
             </div>
             <div>
                 <p>Falta</p>
