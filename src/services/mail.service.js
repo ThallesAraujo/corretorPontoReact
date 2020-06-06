@@ -10,7 +10,6 @@ var EmailService = {
             'content-type': 'application/json',
             'Authorization': null,
             },timeout: 500000}).then(response => {
-            console.log(response)
             completion(response.data)
         }).catch(error => {
            completionError(error)

@@ -117,7 +117,6 @@ const Card = (params) => {
             var intervaloTrabalhado = primeiroHorario + segundoHorario + terceiroHorario + quartoHorario
             intervaloTrabalhado = (intervaloTrabalhado / 1000) / 60
             intervaloTrabalhado = Math.abs(intervaloTrabalhado)
-            console.log("totalEmMinutos =", intervaloTrabalhado)
             var old = { ...ponto }
             ponto["horasTrabalhadas"] = intervaloTrabalhado
             ponto["debitoHoras"] = 0

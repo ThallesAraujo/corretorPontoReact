@@ -40,7 +40,16 @@ const Main = () => {
     
     }
 
-
+    const unselectTabs = () => {
+        var tabs = document.querySelectorAll('.tab')
+        tabs.forEach((tab) => {
+            if(tab.id === "inconsistencias"){
+                tab.classList.add('tab-active')
+            }else{
+                tab.classList.remove('tab-active')
+            }
+        })
+    }
 
     const handleChangeMonth = (event) => {
         handleChangePeriodo(meses.indexOf(event.target.value)+1, state.ano)
@@ -61,6 +70,7 @@ const Main = () => {
             dispatch({mes})
             dispatch({ano})
             dispatch({showSpinner: false})
+            unselectTabs()
         }, 
         (error) => {
             dispatch({showSpinner: false})

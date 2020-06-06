@@ -21,7 +21,6 @@ class TimeUtils{
         
         var hora1 = this.getTimeString(obj1)
         var hora2 = this.getTimeString(obj2)
-        console.log("horas:", hora1, hora2)
         return Math.abs(moment(hora1, "HH:mm").diff(moment(hora2, "HH:mm")))
     }
 

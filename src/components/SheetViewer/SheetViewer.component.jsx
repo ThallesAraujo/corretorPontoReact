@@ -94,9 +94,7 @@ const SheetViewer = (props) => {
         var email = prompt("Informe seu e-mail corporativo")
         if (!ValidationUtils.isNull(email)){
             var mailContent = tableRef.current.outerHTML
-            console.log(mailContent)
             var mailBody = `${mailContent}`
-
             mailBody = MailStyler.styleMail(mailBody)
             dispatch({showSpinner: true})
             EmailService.sendEmail("Pontos corrigidos: Corretor de Ponto", [email], mailBody, (response) => {
