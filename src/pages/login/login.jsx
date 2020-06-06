@@ -58,7 +58,9 @@ const Login = () => {
         var date = new Date()
         dispatch({mes: date.getMonth().toString(10)})
         dispatch({ano: date.getFullYear().toString(10)})
-        sessionStorage.setItem("pontos", JSON.stringify(pontos))
+        localStorage.setItem("pontos", JSON.stringify(pontos))
+        sessionStorage.setItem("matricula", state.matricula)
+        sessionStorage.setItem("senha", state.senha)
         history.push("/main")
       }, (error) => {
         dispatch({showSpinner: false})

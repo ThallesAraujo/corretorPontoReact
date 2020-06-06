@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useGlobal } from '../../states/global'
+import { useHistory } from "react-router-dom";
 import './main.css'
 import Card from '../../components/Card/card.component'
 import SheetViewer from '../../components/SheetViewer/SheetViewer.component'
@@ -7,6 +8,8 @@ import PontoService from '../../services/ponto.service'
 import months from './utils/meses'
 import moment from 'moment'
 import MessageService from '../../services/messages.service';
+import ValidationUtils from '../../utils/ValidationUtils';
+import SessionService from '../../services/session.service';
 
 const Main = () => {
 
@@ -52,7 +55,15 @@ const Main = () => {
     }
 
     const handleChangeMonth = (event) => {
-        handleChangePeriodo(meses.indexOf(event.target.value)+1, state.ano)
+
+        var ano = state.ano
+
+        if (ValidationUtils.isNull(state.ano)){
+           var date = new Date()
+           ano = date.getFullYear()
+        }
+
+        handleChangePeriodo(meses.indexOf(event.target.value)+1, ano)
     }
 
     const handleChangeYear = (event) => {
@@ -63,7 +74,16 @@ const Main = () => {
 
     const handleChangePeriodo = (mes, ano) => {
         dispatch({showSpinner: true})
-        PontoService.getPontosDaData(mes, ano, state.matricula, state.senha, 
+
+        var matricula = state.matricula
+        var senha = state.senha
+
+        if(ValidationUtils.isNull(matricula) && ValidationUtils.isNull(senha)){
+            matricula = sessionStorage.getItem("matricula").toString(10)
+            senha = sessionStorage.getItem("senha").toString(10)
+        }
+
+        PontoService.getPontosDaData(mes, ano, matricula, senha, 
         (pontos) => {
             dispatch({pontos})
             dispatch({pontosFilter: pontos.filter((ponto) => PontoService.isInconsistencia(ponto))})
@@ -79,7 +99,7 @@ const Main = () => {
     }
 
     useEffect(()=> {
-        var pontosStorage = JSON.parse(sessionStorage.getItem("pontos"))
+        var pontosStorage = JSON.parse(localStorage.getItem("pontos"))
         if((pontos[0] === undefined || pontos[0].data === undefined)&&  pontosStorage !== undefined && pontosStorage !== null){
             console.table(pontosStorage)
             pontos = []
