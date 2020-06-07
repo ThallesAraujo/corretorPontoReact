@@ -23,20 +23,18 @@ input::-webkit-inner-spin-button {
 }
 
 @media only screen and (max-width: 700px){
-
-    *{
-        overflow-x: hidden!important;
-    }
-
     .main-container{
-        max-width: 70%;
+        max-width: 100%;
         .wide{
             .container-h{
                 width: 100%!important;
-                overflow-x: hidden;
                 display: flex;
                 flex-direction: column;
             }
+        }
+
+        .button{
+            width: 100%;
         }
     }
 }
