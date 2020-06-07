@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useGlobal } from '../../states/global'
-import { useHistory } from "react-router-dom";
 import './main.css'
 import Card from '../../components/Card/card.component'
 import SheetViewer from '../../components/SheetViewer/SheetViewer.component'
@@ -9,7 +8,7 @@ import months from './utils/meses'
 import moment from 'moment'
 import MessageService from '../../services/messages.service';
 import ValidationUtils from '../../utils/ValidationUtils';
-import SessionService from '../../services/session.service';
+import InputMask from 'react-input-mask';
 
 const Main = () => {
 
@@ -67,8 +66,22 @@ const Main = () => {
     }
 
     const handleChangeYear = (event) => {
-        if(event.target.value.length == 4){
-            handleChangePeriodo(state.mes, event.target.value)
+
+        const anoMaximo = new Date().getFullYear()
+
+        var mes = state.mes
+
+        if (ValidationUtils.isNull(mes)){
+            mes = localStorage.getItem("mes")
+        }
+
+        if (ValidationUtils.isNull(mes)){
+            mes = Number.parseInt(new Date().getMonth()+1)
+        }
+
+
+        if(event.target.value <= anoMaximo){
+            handleChangePeriodo(mes, event.target.value)
         }
     }
 
@@ -140,7 +153,7 @@ const Main = () => {
                         return <option>{mes}</option>
                     })}
                 </select>
-                <input type="text" maxLength="4" onChange={handleChangeYear} name="input-ano" id="input-ano" placeholder="Ano" defaultValue={getAnoAtual()} className="textfield"/>
+                <InputMask mask ="9999" type="text" onChange={handleChangeYear} name="input-ano" id="input-ano" placeholder="Ano" defaultValue={getAnoAtual()} className="textfield"/>
                 </div>
            </div>
            <div className="tabs">
