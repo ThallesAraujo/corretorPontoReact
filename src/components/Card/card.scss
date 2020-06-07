@@ -75,3 +75,13 @@ $color-lighten: lighten($color: #9e99ff, $amount: 25.0);
 .title-link:hover{
     color: $color-lighten
 }
+
+@media only screen and (max-width: 500px){
+    .card{
+        .ponto-container{
+            display: grid;
+            grid-template-columns: 50% 50%;
+            column-gap: 5px;
+        }
+    }
+}

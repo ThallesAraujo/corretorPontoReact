@@ -32,4 +32,24 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+@media only screen and (max-width: 700px) {
+  * {
+    overflow-x: hidden !important;
+  }
+  .main-container {
+    max-width: 70%;
+  }
+  .main-container .wide .container-h {
+    width: 100% !important;
+    overflow-x: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
 /*# sourceMappingURL=login.css.map */

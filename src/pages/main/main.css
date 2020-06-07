@@ -16,4 +16,13 @@
 .container .container-select .content * {
   margin-bottom: 20px;
 }
+
+@media only screen and (max-width: 700px) {
+  * {
+    max-width: 700px;
+  }
+  div {
+    overflow-y: hidden !important;
+  }
+}
 /*# sourceMappingURL=main.css.map */

@@ -86,4 +86,15 @@
 .title-link:hover {
   color: white;
 }
+
+@media only screen and (max-width: 500px) {
+  .card .ponto-container {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 50% 50%;
+        grid-template-columns: 50% 50%;
+    -webkit-column-gap: 5px;
+            column-gap: 5px;
+  }
+}
 /*# sourceMappingURL=card.css.map */
