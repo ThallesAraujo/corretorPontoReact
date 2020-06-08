@@ -88,13 +88,43 @@
 }
 
 @media only screen and (max-width: 700px) {
-  .card .ponto-container {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 50% 50%;
-        grid-template-columns: 50% 50%;
-    -webkit-column-gap: 5px;
-            column-gap: 5px;
+  .container {
+    margin: 10px;
+    margin-bottom: 20%;
+  }
+  .container .card {
+    width: auto;
+    margin: 10px;
+  }
+  .container .card .date-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 60%;
+  }
+  .container .card .ponto-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .container .card .ponto-container * {
+    width: 10em;
+  }
+  .container .card div #justificativa {
+    width: 100%;
+    margin: 0.1em;
+  }
+  .container .card div .button {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=card.css.map */

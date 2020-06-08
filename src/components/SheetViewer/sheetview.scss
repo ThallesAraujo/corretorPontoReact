@@ -104,6 +104,54 @@
         }
     }
 
+}
+
+.planview-mobile{
+    display: none;
+}
+
+@media only screen and (max-width: 700px){
+    .planview{
+        display: none;
+    }
+
+    .planview-hidden{
+        display: none;
+    }
+
+    .planview-show{
+        position: sticky;
+        left: 0;
+        padding: 2em;
+        width: auto;
+        .table-container{
+            max-height: 500px!important;
+            min-width: 200%;
+            overflow-y: scroll!important;
+        }
+    }
+
     
 
+    .planview-mobile{
+        display: block;
+        width: 100%;
+        margin: 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        .mobile-tabs{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            align-content: center;
+            align-items: center;
+            text-align: center;
+            .button{
+                background-color: transparent;
+            }
+
+        }
+    }
 }

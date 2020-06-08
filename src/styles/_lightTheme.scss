@@ -121,4 +121,25 @@
         color: darken($color: $danger-color, $amount: 0.5);
       }
 
+      .planview-mobile{
+
+        .planview-show{
+            background-color: $background-color
+        }
+
+        .mobile-tabs{
+            background-color: transparentize($accent-color, 0.7)!important;
+            backdrop-filter: blur(8px);
+            i{
+                color: $accent-color;
+            }
+            .btn-toggle-viewer{
+                background-color: $accent-color!important;
+                i{
+                    color: darken($color: $accent-color, $amount: 10);
+                }
+            }
+        }
+    }    
+
 };

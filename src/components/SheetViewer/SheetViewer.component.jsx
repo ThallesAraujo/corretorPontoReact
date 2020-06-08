@@ -80,6 +80,14 @@ const SheetViewer = (props) => {
         event.target.parentNode.classList.toggle('handler-open')
     }
 
+    const toggleViewerMobile = (event) => {
+        const viewer = document.getElementsByClassName('planview-container-mobile')[0]
+        viewer.classList.toggle('planview-hidden')
+        viewer.classList.toggle('planview-show')
+        event.target.parentNode.classList.toggle('handler-closed')
+        event.target.parentNode.classList.toggle('handler-open')
+    }
+
     const btnExportar = () => {
         return (
             <div className="btn-exportar-container">
@@ -110,7 +118,8 @@ const SheetViewer = (props) => {
 
 
     return (
-        <div className="planview">
+        <div>
+            <div className="planview">
             <button className="button btn-email" title="Enviar por e-mail" onClick={enviarEmail}>
                     <i className="gg-mail"></i>
             </button>
@@ -119,6 +128,51 @@ const SheetViewer = (props) => {
             </div>
         
             <div className="planview-hidden planview-container">
+                <div className="table-container" >
+                    <table className="pontos-container" ref={tableRef}>
+                        <tr>
+                            <th>Data</th>
+                            <th><div>Ent 1</div></th>
+                            <th><div>Sai 1</div></th>
+                            <th><div>Ent 2</div></th>
+                            <th><div>Sai 2</div></th>
+                            <th><div>Ent 3</div></th>
+                            <th><div>Sai 3</div></th>
+                            <th><div>Ent 4</div></th>
+                            <th><div>Sai 4</div></th>
+                            <th>Justificativa</th>
+                        </tr>
+                        {pontosOriginais.map((ponto) => {
+                            return (
+                                <div className="card">
+                                    <tr>
+                                    <td className={ponto["isEditado"] ? "ponto-modificado" : getClasse("entrada1", ponto)}>{getFomattedDate(ponto.data)}</td>
+                                    <td className={getClasse("entrada1", ponto)}>{getFormattedTime(ponto.entrada1)}</td>
+                                    <td className={getClasse("saida1", ponto)}>{getFormattedTime(ponto.saida1)}</td>
+                                    <td className={getClasse("entrada2", ponto)}>{getFormattedTime(ponto.entrada2)}</td>
+                                    <td className={getClasse("saida2", ponto)}>{getFormattedTime(ponto.saida2)}</td>
+                                    <td className={getClasse("entrada3", ponto)}>{getFormattedTime(ponto.entrada3)}</td>
+                                    <td className={getClasse("saida3", ponto)}>{getFormattedTime(ponto.saida3)}</td>
+                                    <td className={getClasse("entrada4", ponto)}>{getFormattedTime(ponto.entrada4)}</td>
+                                    <td className={getClasse("saida4", ponto)}>{getFormattedTime(ponto.saida4)}</td>
+                                    <td className={getClasse("justificativa", ponto)}>{ponto["justificativa"] !== null && ponto["justificativa"] !== undefined ? ponto["justificativa"] : ""}</td>
+                                </tr>
+                                </div>
+                            )
+                        })}
+                    </table>
+                </div>
+                <ReactToPrint
+                    trigger={btnExportar}
+                    content={() => tableRef.current}
+                />
+
+            </div>
+        </div>
+        <div className="planview-mobile">
+
+
+        <div className="planview-hidden planview-container-mobile">
                 <div className="table-container" >
                     <table className="pontos-container" ref={tableRef}>
                         <tr>
@@ -151,12 +205,21 @@ const SheetViewer = (props) => {
                         })}
                     </table>
                 </div>
-                <ReactToPrint
+            </div>
+
+            <div className="mobile-tabs">
+            <button className="button btn-email" onClick={enviarEmail}>
+                    <i className="gg-mail"></i>
+            </button>
+            <button className="button btn-toggle-viewer" onClick={toggleViewerMobile}>
+                    <i className="gg-eye"></i>
+            </button>
+            <ReactToPrint
                     trigger={btnExportar}
                     content={() => tableRef.current}
                 />
-
             </div>
+        </div>
         </div>
     )
 

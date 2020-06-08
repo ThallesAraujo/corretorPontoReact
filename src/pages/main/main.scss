@@ -25,4 +25,19 @@
     div{
         overflow-y: hidden!important;
     }
+
+    .tabs{
+        text-align: center;
+        justify-content: space-between;
+        align-items: center;
+
+        .tab{
+           margin: 5px;
+           width: 50%;
+           text-align: center;
+           padding: 2% 0 2% 0;
+
+        }
+
+    }
 }

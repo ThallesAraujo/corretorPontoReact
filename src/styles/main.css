@@ -89,6 +89,23 @@
     background-color: rgba(255, 113, 103, 0.4);
     color: #ff6f64;
   }
+  .planview-mobile .planview-show {
+    background-color: #f1f3f6;
+  }
+  .planview-mobile .mobile-tabs {
+    background-color: rgba(108, 99, 255, 0.3) !important;
+    -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+  }
+  .planview-mobile .mobile-tabs i {
+    color: #6C63FF;
+  }
+  .planview-mobile .mobile-tabs .btn-toggle-viewer {
+    background-color: #6C63FF !important;
+  }
+  .planview-mobile .mobile-tabs .btn-toggle-viewer i {
+    color: #3c30ff;
+  }
 }
 
 @media print and (prefers-color-scheme: dark) {
@@ -185,6 +202,23 @@
   .message-success {
     background-color: rgba(84, 104, 51, 0.4);
     color: #536632;
+  }
+  .planview-mobile .planview-show {
+    background-color: #252847;
+  }
+  .planview-mobile .mobile-tabs {
+    background-color: rgba(158, 153, 255, 0.3) !important;
+    -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+  }
+  .planview-mobile .mobile-tabs i {
+    color: #9e99ff;
+  }
+  .planview-mobile .mobile-tabs .btn-toggle-viewer {
+    background-color: #9e99ff !important;
+  }
+  .planview-mobile .mobile-tabs .btn-toggle-viewer i {
+    color: #6e66ff;
   }
 }
 
