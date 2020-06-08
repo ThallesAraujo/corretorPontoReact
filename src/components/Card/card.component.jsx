@@ -113,18 +113,24 @@ const Card = (params) => {
             var primeiroHorario = TimeUtils.getTimeDiff(ponto.entrada1, ponto.saida1)
             
             var segundoHorario = TimeUtils.getTimeDiff(ponto.entrada2, ponto.saida2)
-            var terceiroHorario = TimeUtils.getTimeDiff(ponto.entrada3, ponto.saida4)
+            var terceiroHorario = TimeUtils.getTimeDiff(ponto.entrada3, ponto.saida3)
             var quartoHorario = TimeUtils.getTimeDiff(ponto.entrada4, ponto.saida4)
+            console.log(primeiroHorario,segundoHorario)
             var intervaloTrabalhado = primeiroHorario + segundoHorario + terceiroHorario + quartoHorario
-            intervaloTrabalhado = (intervaloTrabalhado / 1000) / 60
+            
+            intervaloTrabalhado = (intervaloTrabalhado / 1000) /60
+            
 
             var debitoAlmoco = 60 
-            if (!ValidationUtils.isNull(ponto.saida2) && !ValidationUtils.isNull(ponto.entrada2)){
-                debitoAlmoco = (TimeUtils.getTimeDiff(ponto.saida1, ponto.entrada2)/1000) - 60
+            if (!ValidationUtils.isNull(ponto.saida1) && !ValidationUtils.isNull(ponto.entrada2)){
+                debitoAlmoco = 60 - (TimeUtils.getTimeDiff(ponto.saida1, ponto.entrada2)/1000 /60)
             }
 
-            intervaloTrabalhado = Math.abs(intervaloTrabalhado)
-            intervaloTrabalhado -= debitoAlmoco
+            console.log("Débito almoco", debitoAlmoco)
+
+            intervaloTrabalhado = Math.abs(intervaloTrabalhado - debitoAlmoco)
+            
+            console.log("Intervalo trabalhado", intervaloTrabalhado)
             var old = { ...ponto }
             ponto["horasTrabalhadas"] = intervaloTrabalhado
             ponto["debitoHoras"] = 0
